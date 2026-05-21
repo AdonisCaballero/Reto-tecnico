@@ -33,11 +33,11 @@ Aplicación full stack para gestionar recetas de crafteo de Minecraft: **Angular
 
 ### 1. Backend (puerto 8080)
 
-```powershell
+Backend (puerto 8080)
+PowerShell o CMD:
 cd backend
-.\detener-backend.ps1      # solo si el puerto 8080 está ocupado
-.\iniciar-backend.ps1
-```
+mvn compile
+mvn spring-boot:run
 
 Espera el mensaje: `Started LibroDeRecetasApplication`.
 
@@ -45,11 +45,12 @@ Espera el mensaje: `Started LibroDeRecetasApplication`.
 
 En **otra** terminal:
 
-```powershell
+Frontend (puerto 4200)
+Otra terminal (con el backend ya en marcha):
+
 cd frontend
 npm install
-.\iniciar-frontend.ps1
-```
+npm start
 
 Abre: **http://localhost:4200**
 
