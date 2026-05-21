@@ -1,3 +1,9 @@
+<app-steve-celebration
+  [visible]="mostrarSteve()"
+  [recetaNombre]="recetaRecienCreada()"
+  (closed)="mostrarSteve.set(false)"
+/>
+
 <section class="mc-page">
   @if (mensaje()) {
     <p class="mc-toast" role="status">{{ mensaje() }}</p>

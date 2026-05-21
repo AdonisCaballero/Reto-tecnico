@@ -1,0 +1,342 @@
+.steve-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  animation: overlay-in 0.35s ease;
+  padding: 1rem;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.steve-scene {
+  position: relative;
+  text-align: center;
+  animation: scene-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scene-pop {
+  0% {
+    transform: scale(0.3) translateY(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.particles {
+  position: absolute;
+  inset: -20px;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  font-size: 1.25rem;
+  color: var(--mc-gold, #ffd700);
+  animation: particle-float 1.2s ease-in-out infinite;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.particle:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+.particle:nth-child(2) {
+  top: 20%;
+  right: 8%;
+  animation-delay: 0.15s;
+}
+.particle:nth-child(3) {
+  top: 5%;
+  left: 40%;
+  animation-delay: 0.3s;
+}
+.particle:nth-child(4) {
+  bottom: 30%;
+  left: 0;
+  animation-delay: 0.1s;
+}
+.particle:nth-child(5) {
+  bottom: 25%;
+  right: 0;
+  animation-delay: 0.25s;
+}
+.particle:nth-child(6) {
+  top: 40%;
+  left: 10%;
+  animation-delay: 0.4s;
+}
+.particle:nth-child(7) {
+  top: 35%;
+  right: 12%;
+  animation-delay: 0.5s;
+}
+.particle:nth-child(8) {
+  bottom: 10%;
+  left: 45%;
+  animation-delay: 0.2s;
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-12px) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+.speech-bubble {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #fffef5;
+  border: 4px solid #2d1f0f;
+  padding: 12px 20px;
+  margin-bottom: 1rem;
+  box-shadow: 4px 4px 0 #000;
+  position: relative;
+  animation: bubble-wiggle 0.6s ease 0.3s 2;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 12px solid transparent;
+  border-top-color: #2d1f0f;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 10px solid transparent;
+  border-top-color: #fffef5;
+  z-index: 1;
+}
+
+@keyframes bubble-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.speech-title {
+  font-family: var(--font-pixel, monospace);
+  font-size: 0.5rem;
+  color: #2d6a2e;
+  line-height: 1.6;
+}
+
+.speech-item {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d1f0f;
+}
+
+/* Steve en pixel art (CSS) */
+.steve-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.steve {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  image-rendering: pixelated;
+}
+
+.steve--celebrate {
+  animation: steve-jump 0.6s ease infinite;
+}
+
+@keyframes steve-jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-28px);
+  }
+}
+
+.steve-head {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: #c69c6d;
+  border: 4px solid #3d2817;
+  box-shadow: inset -4px -4px 0 rgba(0, 0, 0, 0.15);
+}
+
+.steve-hair {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: #4a3728;
+  border-bottom: 4px solid #3d2817;
+}
+
+.steve-face {
+  position: absolute;
+  inset: 20px 8px 8px;
+}
+
+.steve-eye {
+  position: absolute;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid #1a1a4e;
+}
+
+.steve-eye--left {
+  left: 6px;
+}
+
+.steve-eye--right {
+  right: 6px;
+}
+
+.steve-mouth {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 6px;
+  background: #8b5a3c;
+  border: 2px solid #3d2817;
+}
+
+.steve-body-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: -4px;
+}
+
+.steve-arm {
+  width: 20px;
+  height: 44px;
+  background: #c69c6d;
+  border: 4px solid #3d2817;
+  margin-top: 4px;
+}
+
+.steve-arm--wave {
+  transform-origin: top center;
+  animation: steve-wave 0.5s ease-in-out infinite;
+}
+
+@keyframes steve-wave {
+  0%,
+  100% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(35deg);
+  }
+}
+
+.steve-torso {
+  width: 64px;
+  height: 48px;
+  background: #00aaaa;
+  border: 4px solid #3d2817;
+  box-shadow: inset 0 -8px 0 #008888;
+}
+
+.steve-legs {
+  display: flex;
+  gap: 4px;
+  margin-top: -4px;
+}
+
+.steve-leg {
+  width: 28px;
+  height: 40px;
+  background: #3c3c9a;
+  border: 4px solid #3d2817;
+  animation: steve-walk 0.4s ease-in-out infinite alternate;
+}
+
+.steve-leg--right {
+  animation-delay: 0.2s;
+}
+
+@keyframes steve-walk {
+  from {
+    transform: rotate(-8deg);
+  }
+  to {
+    transform: rotate(8deg);
+  }
+}
+
+.steve-shadow {
+  width: 80px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+  margin: 8px auto 0;
+  animation: shadow-pulse 0.6s ease infinite;
+}
+
+@keyframes shadow-pulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scaleX(0.7);
+    opacity: 0.3;
+  }
+}
+
+.steve-subtitle {
+  font-family: var(--font-ui, sans-serif);
+  font-size: 1rem;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  margin: 0 0 1rem;
+}
+
+.steve-close {
+  margin-top: 0.25rem;
+}

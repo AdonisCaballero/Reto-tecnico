@@ -1,13 +1,14 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { SteveCelebrationComponent } from '../../components/steve-celebration/steve-celebration.component';
 import { RecetaService } from '../../services/receta.service';
 import { Receta } from '../../models/receta';
 
 @Component({
   selector: 'app-recetas',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, SteveCelebrationComponent],
   templateUrl: './recetas.component.html',
   styleUrl: './recetas.component.css',
 })
@@ -19,6 +20,8 @@ export class RecetasComponent implements OnInit {
   busqueda = signal('');
   mensaje = signal('');
   cargando = signal(false);
+  mostrarSteve = signal(false);
+  recetaRecienCreada = signal('');
 
   recetasFiltradas = computed(() => {
     const termino = this.busqueda().trim().toLowerCase();
@@ -61,6 +64,8 @@ export class RecetasComponent implements OnInit {
       next: (receta) => {
         this.recetas.update((lista) => [...lista, receta]);
         this.form.reset();
+        this.recetaRecienCreada.set(receta.nombre);
+        this.mostrarSteve.set(true);
         this.mensaje.set(`Receta "${receta.nombre}" creada.`);
       },
       error: () => this.mensaje.set('Error al crear la receta.'),

@@ -1,0 +1,50 @@
+@if (visible()) {
+  <div
+    class="steve-overlay"
+    role="dialog"
+    aria-label="Celebración: receta crafteada"
+    (click)="cerrar()"
+    (keydown.escape)="cerrar()"
+  >
+    <div class="steve-scene" (click)="$event.stopPropagation()">
+      <div class="particles" aria-hidden="true">
+        @for (p of [1, 2, 3, 4, 5, 6, 7, 8]; track p) {
+          <span class="particle">✦</span>
+        }
+      </div>
+
+      <div class="speech-bubble">
+        <span class="speech-title">¡Receta crafteada!</span>
+        <span class="speech-item">{{ recetaNombre() }}</span>
+      </div>
+
+      <div class="steve-wrapper">
+        <div class="steve steve--celebrate" aria-hidden="true">
+          <div class="steve-head">
+            <div class="steve-hair"></div>
+            <div class="steve-face">
+              <span class="steve-eye steve-eye--left"></span>
+              <span class="steve-eye steve-eye--right"></span>
+              <span class="steve-mouth"></span>
+            </div>
+          </div>
+          <div class="steve-body-row">
+            <div class="steve-arm steve-arm--left"></div>
+            <div class="steve-torso"></div>
+            <div class="steve-arm steve-arm--right steve-arm--wave"></div>
+          </div>
+          <div class="steve-legs">
+            <div class="steve-leg steve-leg--left"></div>
+            <div class="steve-leg steve-leg--right"></div>
+          </div>
+        </div>
+        <div class="steve-shadow"></div>
+      </div>
+
+      <p class="steve-subtitle">Steve aprueba tu crafteo</p>
+      <button type="button" class="mc-btn mc-btn--wood steve-close" (click)="cerrar()">
+        ¡Genial!
+      </button>
+    </div>
+  </div>
+}
