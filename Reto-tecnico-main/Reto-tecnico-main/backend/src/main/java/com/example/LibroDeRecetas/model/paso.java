@@ -1,14 +1,14 @@
 package com.example.LibroDeRecetas.model;
 
-public class paso {
+public class Paso {
 
     private int id;
     private String descripcion;
 
-    public paso() {
+    public Paso() {
     }
 
-    public paso(int id, String descripcion) {
+    public Paso(int id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
