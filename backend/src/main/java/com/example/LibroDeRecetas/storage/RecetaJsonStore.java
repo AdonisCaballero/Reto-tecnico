@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -81,7 +81,7 @@ public class RecetaJsonStore {
                         .orElseThrow(() -> new RuntimeException("Receta no encontrada con ID: " + receta.getId()));
                 existente.setNombre(receta.getNombre());
                 if (receta.getPasos() != null) {
-                    existente.setPasos(new ArrayList<>(receta.getPasos()));
+                    existente.setPasos(mutablePasosCopy(receta.getPasos()));
                 }
             }
             persistToDisk();
@@ -169,19 +169,15 @@ public class RecetaJsonStore {
                 if (r.getPasos() == null) {
                     r.setPasos(new ArrayList<>());
                 }
+                r.setPasos(mutablePasosCopy(r.getPasos()));
                 recetas.add(r);
             });
         }
     }
 
     private void persistToDisk() throws IOException {
-        Path tempFile = dataFile.resolveSibling(dataFile.getFileName() + ".tmp");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(tempFile.toFile(), recetas);
-            Files.move(tempFile, dataFile, StandardCopyOption.REPLACE_EXISTING);
-        } finally {
-            Files.deleteIfExists(tempFile);
-        }
+        byte[] json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(recetas);
+        Files.write(dataFile, json, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     private int nextRecetaId() {
@@ -207,7 +203,17 @@ public class RecetaJsonStore {
         Receta copia = new Receta();
         copia.setId(original.getId());
         copia.setNombre(original.getNombre());
-        copia.setPasos(original.getPasos().stream().map(this::copyPaso).toList());
+        copia.setPasos(mutablePasosCopy(original.getPasos()));
+        return copia;
+    }
+
+    private List<Paso> mutablePasosCopy(List<Paso> pasos) {
+        List<Paso> copia = new ArrayList<>();
+        if (pasos != null) {
+            for (Paso paso : pasos) {
+                copia.add(copyPaso(paso));
+            }
+        }
         return copia;
     }
 

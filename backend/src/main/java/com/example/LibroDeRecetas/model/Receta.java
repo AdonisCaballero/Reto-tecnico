@@ -45,6 +45,8 @@ public class Receta {
     public void addPaso(Paso paso) {
         if (pasos == null) {
             pasos = new ArrayList<>();
+        } else if (!(pasos instanceof ArrayList)) {
+            pasos = new ArrayList<>(pasos);
         }
         pasos.add(paso);
     }

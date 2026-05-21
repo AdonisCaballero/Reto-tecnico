@@ -1,48 +1,115 @@
 <div class="mc-world">
-  <header class="mc-header">
-    <div class="mc-header__inner">
-      <div class="crafting-row" aria-hidden="true">
-        <div class="crafting-table">
-          <div class="crafting-grid">
-            <div class="crafting-slot">🪵</div>
-            <div class="crafting-slot">🪨</div>
-            <div class="crafting-slot">⚒</div>
-            <div class="crafting-slot">💎</div>
-            <div class="crafting-slot">📜</div>
-            <div class="crafting-slot">🔥</div>
-            <div class="crafting-slot">🌾</div>
-            <div class="crafting-slot">🧱</div>
-            <div class="crafting-slot">⛏</div>
+  <!-- Pradera decorativa: no recibe clics -->
+  <div class="mc-meadow" aria-hidden="true">
+    <div class="mc-meadow__hills"></div>
+    <div class="mc-meadow__ground"></div>
+
+    <div class="mc-tree mc-tree--1 mc-tree--near">
+      <div class="mc-tree__crown"></div>
+      <div class="mc-tree__trunk"></div>
+    </div>
+    <div class="mc-tree mc-tree--2 mc-tree--near">
+      <div class="mc-tree__crown"></div>
+      <div class="mc-tree__trunk"></div>
+    </div>
+    <div class="mc-tree mc-tree--3 mc-tree--far">
+      <div class="mc-tree__crown"></div>
+      <div class="mc-tree__trunk"></div>
+    </div>
+    <div class="mc-tree mc-tree--4 mc-tree--far">
+      <div class="mc-tree__crown"></div>
+      <div class="mc-tree__trunk"></div>
+    </div>
+
+    <span class="mc-tuft mc-tuft--1"></span>
+    <span class="mc-tuft mc-tuft--2"></span>
+    <span class="mc-tuft mc-tuft--3"></span>
+    <span class="mc-tuft mc-tuft--4"></span>
+    <span class="mc-tuft mc-tuft--5"></span>
+
+    <span class="mc-flower mc-flower--yellow mc-flower--1"></span>
+    <span class="mc-flower mc-flower--red mc-flower--2"></span>
+    <span class="mc-flower mc-flower--yellow mc-flower--3"></span>
+
+    <div class="mc-animal mc-cow mc-cow--1">
+      <div class="mc-cow__head"></div>
+      <div class="mc-cow__body"></div>
+      <span class="mc-cow__leg mc-cow__leg--1"></span>
+      <span class="mc-cow__leg mc-cow__leg--2"></span>
+      <span class="mc-cow__leg mc-cow__leg--3"></span>
+      <span class="mc-cow__leg mc-cow__leg--4"></span>
+    </div>
+
+    <div class="mc-animal mc-sheep mc-sheep--1">
+      <div class="mc-sheep__head"></div>
+      <div class="mc-sheep__wool"></div>
+      <span class="mc-sheep__leg mc-sheep__leg--1"></span>
+      <span class="mc-sheep__leg mc-sheep__leg--2"></span>
+    </div>
+
+    <div class="mc-animal mc-pig mc-pig--1">
+      <div class="mc-pig__snout"></div>
+      <div class="mc-pig__head"></div>
+      <div class="mc-pig__body"></div>
+      <span class="mc-pig__leg mc-pig__leg--1"></span>
+      <span class="mc-pig__leg mc-pig__leg--2"></span>
+    </div>
+
+    <div class="mc-animal mc-chicken mc-chicken--1">
+      <div class="mc-chicken__comb"></div>
+      <div class="mc-chicken__head"></div>
+      <div class="mc-chicken__body"></div>
+      <span class="mc-chicken__leg mc-chicken__leg--1"></span>
+      <span class="mc-chicken__leg mc-chicken__leg--2"></span>
+    </div>
+  </div>
+
+  <div class="mc-content">
+    <header class="mc-header">
+      <div class="mc-header__inner">
+        <div class="crafting-row" aria-hidden="true">
+          <div class="crafting-table">
+            <div class="crafting-grid">
+              <div class="crafting-slot">🪵</div>
+              <div class="crafting-slot">🪨</div>
+              <div class="crafting-slot">⚒</div>
+              <div class="crafting-slot">💎</div>
+              <div class="crafting-slot">📜</div>
+              <div class="crafting-slot">🔥</div>
+              <div class="crafting-slot">🌾</div>
+              <div class="crafting-slot">🧱</div>
+              <div class="crafting-slot">⛏</div>
+            </div>
+          </div>
+          <span class="crafting-arrow">▶</span>
+          <div class="crafting-table">
+            <div class="crafting-grid" style="grid-template-columns: 36px">
+              <div class="crafting-slot crafting-slot--result">📖</div>
+            </div>
           </div>
         </div>
-        <span class="crafting-arrow">▶</span>
-        <div class="crafting-table">
-          <div class="crafting-grid" style="grid-template-columns: 36px">
-            <div class="crafting-slot crafting-slot--result">📖</div>
-          </div>
-        </div>
+        <h1 class="mc-title">LIBRO DE RECETAS</h1>
+        <p class="mc-subtitle">Craftea, guarda y comparte tus recetas del overworld</p>
       </div>
-      <h1 class="mc-title">LIBRO DE RECETAS</h1>
-      <p class="mc-subtitle">Craftea, guarda y comparte tus recetas del overworld</p>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <router-outlet />
-  </main>
+    <main>
+      <router-outlet />
+    </main>
 
-  <footer class="mc-footer">
-    <div class="mc-hotbar" aria-hidden="true">
-      <div class="mc-hotbar-slot mc-hotbar-slot--active">📖</div>
-      <div class="mc-hotbar-slot">⚔</div>
-      <div class="mc-hotbar-slot">🪓</div>
-      <div class="mc-hotbar-slot">⛏</div>
-      <div class="mc-hotbar-slot">🗡</div>
-      <div class="mc-hotbar-slot">🛡</div>
-      <div class="mc-hotbar-slot">🍖</div>
-      <div class="mc-hotbar-slot">🧪</div>
-      <div class="mc-hotbar-slot">🧭</div>
-    </div>
-    <span>Minecraft-style recipe book · Reto técnico</span>
-  </footer>
+    <footer class="mc-footer">
+      <div class="mc-hotbar" aria-hidden="true">
+        <div class="mc-hotbar-slot mc-hotbar-slot--active">📖</div>
+        <div class="mc-hotbar-slot">⚔</div>
+        <div class="mc-hotbar-slot">🪓</div>
+        <div class="mc-hotbar-slot">⛏</div>
+        <div class="mc-hotbar-slot">🗡</div>
+        <div class="mc-hotbar-slot">🛡</div>
+        <div class="mc-hotbar-slot">🍖</div>
+        <div class="mc-hotbar-slot">🧪</div>
+        <div class="mc-hotbar-slot">🧭</div>
+      </div>
+      <span>Minecraft-style recipe book · Reto técnico</span>
+    </footer>
+  </div>
 </div>

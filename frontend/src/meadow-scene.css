@@ -1,0 +1,478 @@
+/* Pradera decorativa — no captura clics, queda detrás de la UI */
+
+.mc-meadow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+/* Césped con variación de tonos */
+.mc-meadow__ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 58%;
+  background:
+    linear-gradient(180deg, #6eb552 0%, #5d9b47 12%, #4a8f3a 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 14px,
+      rgba(61, 107, 46, 0.12) 14px,
+      rgba(61, 107, 46, 0.12) 16px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 10px,
+      rgba(45, 90, 35, 0.1) 10px,
+      rgba(45, 90, 35, 0.1) 12px
+    );
+}
+
+/* Colinas al horizonte */
+.mc-meadow__hills {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: 48%;
+  height: 120px;
+  background:
+    radial-gradient(ellipse 35% 100% at 15% 100%, #5d9b47 0%, transparent 70%),
+    radial-gradient(ellipse 40% 100% at 50% 100%, #6eb552 0%, transparent 72%),
+    radial-gradient(ellipse 38% 100% at 85% 100%, #4a8f3a 0%, transparent 70%);
+  opacity: 0.95;
+}
+
+/* Hierba / flores */
+.mc-tuft {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 14px;
+  background: linear-gradient(180deg, #7cfc00 30%, #3d8b2f 100%);
+  border: 2px solid #2d5a22;
+  pointer-events: none;
+}
+
+.mc-tuft::before,
+.mc-tuft::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  background: inherit;
+  border: inherit;
+  top: -4px;
+}
+
+.mc-tuft::before {
+  left: -8px;
+  transform: rotate(-18deg);
+}
+
+.mc-tuft::after {
+  right: -8px;
+  transform: rotate(18deg);
+}
+
+.mc-flower {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 0;
+  border: 2px solid #2d5a22;
+}
+
+.mc-flower--yellow {
+  background: #ffeb3b;
+  box-shadow: -10px 2px 0 #ffeb3b, 10px 2px 0 #ffeb3b;
+}
+
+.mc-flower--red {
+  background: #e53935;
+  box-shadow: 0 -12px 0 #e53935;
+}
+
+/* Árbol pixel */
+.mc-tree {
+  position: absolute;
+  bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-origin: bottom center;
+}
+
+.mc-tree--far {
+  transform: scale(0.65);
+  opacity: 0.85;
+  bottom: 14%;
+}
+
+.mc-tree--near {
+  transform: scale(1.05);
+}
+
+.mc-tree__crown {
+  width: 52px;
+  height: 44px;
+  background: #3d8b2f;
+  border: 4px solid #2d5a22;
+  position: relative;
+  box-shadow:
+    -20px 8px 0 -4px #4aa83a,
+    20px 8px 0 -4px #4aa83a,
+    0 -12px 0 -2px #5cb848;
+}
+
+.mc-tree__crown::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background: rgba(92, 184, 72, 0.35);
+  border: 2px solid rgba(45, 90, 35, 0.4);
+}
+
+.mc-tree__trunk {
+  width: 16px;
+  height: 28px;
+  margin-top: -4px;
+  background: #6b4423;
+  border: 3px solid #3d2817;
+}
+
+/* Animales pixel */
+.mc-animal {
+  position: absolute;
+  bottom: 11%;
+  image-rendering: pixelated;
+  animation: meadow-idle 4s ease-in-out infinite;
+}
+
+@keyframes meadow-idle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Vaca */
+.mc-cow {
+  width: 56px;
+  height: 36px;
+}
+
+.mc-cow__body {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 40px;
+  height: 22px;
+  background: #8d6e63;
+  border: 3px solid #4e342e;
+}
+
+.mc-cow__body::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid #4e342e;
+  box-shadow: 14px 2px 0 #fff, 14px 2px 0 #4e342e;
+}
+
+.mc-cow__head {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  width: 22px;
+  height: 20px;
+  background: #8d6e63;
+  border: 3px solid #4e342e;
+}
+
+.mc-cow__leg {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 10px;
+  background: #5d4037;
+  border: 2px solid #3e2723;
+}
+
+.mc-cow__leg--1 {
+  left: 12px;
+}
+.mc-cow__leg--2 {
+  left: 22px;
+}
+.mc-cow__leg--3 {
+  left: 34px;
+}
+.mc-cow__leg--4 {
+  left: 44px;
+}
+
+/* Oveja */
+.mc-sheep {
+  width: 44px;
+  height: 32px;
+}
+
+.mc-sheep__wool {
+  position: absolute;
+  bottom: 10px;
+  left: 4px;
+  width: 36px;
+  height: 22px;
+  background: #f5f5f5;
+  border: 3px solid #bdbdbd;
+  box-shadow:
+    -6px -4px 0 #fff,
+    6px -4px 0 #fff,
+    0 -8px 0 #fff;
+}
+
+.mc-sheep__head {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 18px;
+  height: 16px;
+  background: #9e9e9e;
+  border: 3px solid #616161;
+}
+
+.mc-sheep__leg {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 10px;
+  background: #757575;
+  border: 2px solid #424242;
+}
+
+.mc-sheep__leg--1 {
+  left: 10px;
+}
+.mc-sheep__leg--2 {
+  left: 28px;
+}
+
+/* Cerdo */
+.mc-pig {
+  width: 40px;
+  height: 28px;
+}
+
+.mc-pig__body {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  width: 30px;
+  height: 18px;
+  background: #f48fb1;
+  border: 3px solid #c2185b;
+}
+
+.mc-pig__head {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 18px;
+  height: 16px;
+  background: #f48fb1;
+  border: 3px solid #c2185b;
+}
+
+.mc-pig__snout {
+  position: absolute;
+  bottom: 12px;
+  left: -4px;
+  width: 12px;
+  height: 10px;
+  background: #f8bbd0;
+  border: 2px solid #c2185b;
+}
+
+.mc-pig__snout::before,
+.mc-pig__snout::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  width: 3px;
+  height: 3px;
+  background: #880e4f;
+}
+
+.mc-pig__snout::before {
+  left: 2px;
+}
+.mc-pig__snout::after {
+  right: 2px;
+}
+
+.mc-pig__leg {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 8px;
+  background: #ec407a;
+  border: 2px solid #ad1457;
+}
+
+.mc-pig__leg--1 {
+  left: 10px;
+}
+.mc-pig__leg--2 {
+  left: 26px;
+}
+
+/* Pollo */
+.mc-chicken {
+  width: 28px;
+  height: 26px;
+}
+
+.mc-chicken__body {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  width: 18px;
+  height: 14px;
+  background: #fff;
+  border: 2px solid #9e9e9e;
+}
+
+.mc-chicken__head {
+  position: absolute;
+  bottom: 14px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid #9e9e9e;
+}
+
+.mc-chicken__comb {
+  position: absolute;
+  bottom: 22px;
+  left: 4px;
+  width: 8px;
+  height: 6px;
+  background: #e53935;
+  border: 2px solid #b71c1c;
+}
+
+.mc-chicken__leg {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 8px;
+  background: #ff8f00;
+  border: 1px solid #e65100;
+}
+
+.mc-chicken__leg--1 {
+  left: 10px;
+}
+.mc-chicken__leg--2 {
+  left: 16px;
+}
+
+/* Posiciones en la pradera */
+.mc-tree--1 {
+  left: 2%;
+}
+.mc-tree--2 {
+  right: 4%;
+}
+.mc-tree--3 {
+  left: 78%;
+}
+.mc-tree--4 {
+  left: 38%;
+}
+
+.mc-tuft--1 {
+  left: 12%;
+  bottom: 18%;
+}
+.mc-tuft--2 {
+  left: 28%;
+  bottom: 14%;
+}
+.mc-tuft--3 {
+  right: 22%;
+  bottom: 16%;
+}
+.mc-tuft--4 {
+  right: 8%;
+  bottom: 20%;
+}
+.mc-tuft--5 {
+  left: 55%;
+  bottom: 12%;
+}
+
+.mc-flower--1 {
+  left: 18%;
+  bottom: 15%;
+}
+.mc-flower--2 {
+  left: 62%;
+  bottom: 13%;
+}
+.mc-flower--3 {
+  right: 15%;
+  bottom: 17%;
+}
+
+.mc-cow--1 {
+  left: 8%;
+}
+.mc-sheep--1 {
+  right: 12%;
+}
+.mc-pig--1 {
+  left: 42%;
+  bottom: 9%;
+}
+.mc-chicken--1 {
+  right: 32%;
+  bottom: 13%;
+}
+
+/* Contenido por encima de la pradera */
+.mc-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mc-content main {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .mc-tree--3,
+  .mc-tree--4,
+  .mc-pig--1,
+  .mc-chicken--1 {
+    display: none;
+  }
+}

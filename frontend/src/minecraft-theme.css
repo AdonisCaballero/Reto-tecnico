@@ -39,17 +39,18 @@ body {
   font-family: var(--font-ui);
   font-size: 16px;
   color: var(--mc-text);
-  background: linear-gradient(180deg, var(--mc-sky-top) 0%, var(--mc-sky-bottom) 45%, var(--mc-grass) 45%, var(--mc-grass-dark) 100%);
+  background: linear-gradient(180deg, var(--mc-sky-top) 0%, var(--mc-sky-bottom) 100%);
   image-rendering: pixelated;
 }
 
 .mc-world {
   position: relative;
   min-height: 100dvh;
-  z-index: 1;
 }
 
 .mc-header {
+  position: relative;
+  z-index: 1;
   text-align: center;
   padding: 1.5rem 1rem 1rem;
 }
@@ -353,6 +354,8 @@ body {
 }
 
 .mc-page {
+  position: relative;
+  z-index: 1;
   max-width: 760px;
   margin: 0 auto;
   padding: 0 1rem 3rem;
@@ -457,6 +460,8 @@ body {
 }
 
 .mc-footer {
+  position: relative;
+  z-index: 2;
   text-align: center;
   padding: 1.5rem;
   font-family: var(--font-ui);
