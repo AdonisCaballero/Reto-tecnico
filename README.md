@@ -220,8 +220,10 @@ git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
 git push -u origin main
 ```
 
-No subas `node_modules/`, `target/` ni ficheros H2 antiguos (ya están en `.gitignore`).
 
 ## Autores
 
-Proyecto del reto técnico — Libro de Recetas Minecraft.
+DANICA LINDSAY VARGAS ARÉVALO 
+Adonis Caballero alamo 
+Pablo Rodríguez Gómez 
+Alvaro Fernandez Montero
