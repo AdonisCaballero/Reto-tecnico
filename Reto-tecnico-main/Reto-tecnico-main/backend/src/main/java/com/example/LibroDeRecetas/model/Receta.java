@@ -7,7 +7,7 @@ public class Receta {
 
     private int id;
     private String nombre;
-    private List<paso> pasos = new ArrayList<>();
+    private List<Paso> pasos = new ArrayList<>();
 
     public Receta() {
     }
