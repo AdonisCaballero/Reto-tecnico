@@ -1,0 +1,512 @@
+/* Tema inspirado en Minecraft — paleta y utilidades compartidas */
+
+:root {
+  --mc-sky-top: #78a7ff;
+  --mc-sky-bottom: #c8e6ff;
+  --mc-grass: #5d9b47;
+  --mc-grass-dark: #3d6b2e;
+  --mc-dirt: #8b5a2b;
+  --mc-stone: #7a7a7a;
+  --mc-wood: #a67c52;
+  --mc-wood-dark: #6b4423;
+  --mc-crafting: #c9a227;
+  --mc-crafting-dark: #8b6914;
+  --mc-slot: #c6a664;
+  --mc-slot-inset: #5c4a1f;
+  --mc-paper: #f3e4bc;
+  --mc-paper-dark: #d4bc82;
+  --mc-text: #2d1f0f;
+  --mc-text-light: #f4e4bc;
+  --mc-emerald: #17dd62;
+  --mc-emerald-dark: #0e9b44;
+  --mc-red: #c62828;
+  --mc-red-dark: #8b0000;
+  --mc-gold: #ffd700;
+  --mc-shadow: #1a1208;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-ui: 'Silkscreen', 'Courier New', monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: var(--mc-text);
+  background: linear-gradient(180deg, var(--mc-sky-top) 0%, var(--mc-sky-bottom) 45%, var(--mc-grass) 45%, var(--mc-grass-dark) 100%);
+  image-rendering: pixelated;
+}
+
+/* Cielo con nubes pixeladas */
+.mc-world::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 15% 12%, rgba(255, 255, 255, 0.9) 0 8px, transparent 8px),
+    radial-gradient(circle at 18% 11%, rgba(255, 255, 255, 0.85) 0 12px, transparent 12px),
+    radial-gradient(circle at 55% 8%, rgba(255, 255, 255, 0.9) 0 10px, transparent 10px),
+    radial-gradient(circle at 58% 7%, rgba(255, 255, 255, 0.8) 0 14px, transparent 14px),
+    radial-gradient(circle at 82% 15%, rgba(255, 255, 255, 0.85) 0 9px, transparent 9px);
+  z-index: 0;
+}
+
+.mc-world {
+  position: relative;
+  min-height: 100dvh;
+  z-index: 1;
+}
+
+.mc-header {
+  text-align: center;
+  padding: 1.5rem 1rem 1rem;
+}
+
+.mc-header__inner {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mc-title {
+  font-family: var(--font-pixel);
+  font-size: clamp(0.65rem, 2.5vw, 0.95rem);
+  line-height: 1.6;
+  color: var(--mc-text-light);
+  text-shadow:
+    3px 3px 0 var(--mc-shadow),
+    -1px -1px 0 #000;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.mc-subtitle {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--mc-paper);
+  text-shadow: 2px 2px 0 var(--mc-shadow);
+  margin: 0;
+  max-width: 420px;
+}
+
+/* Mesa de crafteo decorativa 3x3 */
+.crafting-table {
+  background: linear-gradient(180deg, var(--mc-crafting) 0%, var(--mc-crafting-dark) 100%);
+  border: 4px solid var(--mc-wood-dark);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.25),
+    inset -3px -3px 0 rgba(0, 0, 0, 0.35),
+    6px 6px 0 var(--mc-shadow);
+  padding: 10px;
+  display: inline-block;
+}
+
+.crafting-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 36px);
+  gap: 4px;
+}
+
+.crafting-slot {
+  width: 36px;
+  height: 36px;
+  background: var(--mc-slot);
+  border: 3px solid;
+  border-color: #e8d090 var(--mc-slot-inset) var(--mc-slot-inset) #e8d090;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.crafting-slot--result {
+  background: linear-gradient(135deg, #8fceff 0%, #4a90d9 100%);
+  border-color: #b8e4ff #2a5a8a #2a5a8a #b8e4ff;
+}
+
+.crafting-arrow {
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+  color: var(--mc-text-light);
+  text-shadow: 2px 2px 0 #000;
+  align-self: center;
+  padding: 0 8px;
+}
+
+.crafting-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Panel tipo libro / inventario */
+.mc-panel {
+  background: var(--mc-paper);
+  border: 4px solid var(--mc-paper-dark);
+  box-shadow:
+    inset 0 0 0 2px #fff8e8,
+    inset 4px 4px 0 rgba(255, 255, 255, 0.5),
+    6px 6px 0 var(--mc-shadow);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.mc-panel::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px dashed rgba(139, 90, 43, 0.2);
+  pointer-events: none;
+}
+
+.mc-panel h2 {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  line-height: 1.8;
+  margin: 0 0 1rem;
+  color: var(--mc-wood-dark);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mc-panel h2::before {
+  content: '📖';
+  font-size: 1rem;
+}
+
+.mc-label {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: var(--mc-wood-dark);
+}
+
+.mc-input,
+.mc-search {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  background: #fffef5;
+  border: 3px solid;
+  border-color: #fff #8b7355 #5c4a1f #c4a574;
+  color: var(--mc-text);
+  margin-bottom: 0.85rem;
+  outline: none;
+}
+
+.mc-input:focus,
+.mc-search:focus {
+  border-color: var(--mc-emerald) var(--mc-emerald-dark) var(--mc-emerald-dark) var(--mc-emerald);
+  box-shadow: 0 0 0 2px rgba(23, 221, 98, 0.35);
+}
+
+.mc-search {
+  margin-bottom: 0;
+}
+
+/* Botones estilo Minecraft */
+.mc-btn {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 10px 18px;
+  cursor: pointer;
+  border: 3px solid;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: transform 0.05s, filter 0.1s;
+}
+
+.mc-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+}
+
+.mc-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.mc-btn--primary {
+  background: linear-gradient(180deg, var(--mc-emerald) 0%, var(--mc-emerald-dark) 100%);
+  color: #fff;
+  border-color: #5eff9a var(--mc-emerald-dark) #066b2e #3dd87a;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.mc-btn--primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.mc-btn--secondary {
+  background: linear-gradient(180deg, #9e9e9e 0%, #616161 100%);
+  color: #fff;
+  border-color: #bdbdbd #424242 #212121 #9e9e9e;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.mc-btn--danger {
+  background: linear-gradient(180deg, #ef5350 0%, var(--mc-red) 100%);
+  color: #fff;
+  border-color: #ff8a80 var(--mc-red-dark) #5c0000 #e53935;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.mc-btn--wood {
+  background: linear-gradient(180deg, var(--mc-wood) 0%, var(--mc-wood-dark) 100%);
+  color: var(--mc-text-light);
+  border-color: #d4a574 var(--mc-wood-dark) #3d2410 #b8895a;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* Toast estilo experiencia */
+.mc-toast {
+  background: linear-gradient(90deg, #7cfc00, #32cd32);
+  border: 3px solid #1b5e20;
+  color: #fff;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  text-shadow: 1px 1px 0 #000;
+  box-shadow: 4px 4px 0 var(--mc-shadow);
+  margin-bottom: 1rem;
+  animation: mc-pop 0.3s ease;
+}
+
+@keyframes mc-pop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Slots de inventario para listas */
+.mc-slot-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mc-slot-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, #8b8b8b 0%, #6b6b6b 100%);
+  border: 3px solid;
+  border-color: #bdbdbd #3d3d3d #2a2a2a #9e9e9e;
+  box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.15);
+}
+
+.mc-slot-item__link {
+  flex: 1;
+  min-width: 180px;
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--mc-gold);
+  text-decoration: none;
+  text-shadow: 2px 2px 0 #000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mc-slot-item__link::before {
+  content: '⚔';
+  font-size: 1.2rem;
+}
+
+.mc-slot-item__link:hover {
+  color: #fff59d;
+  text-decoration: underline;
+}
+
+.mc-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--mc-text-light);
+  text-decoration: none;
+  text-shadow: 2px 2px 0 #000;
+  margin-bottom: 1rem;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.mc-back:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.mc-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.mc-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.mc-toolbar .mc-search {
+  max-width: 260px;
+  flex: 1;
+}
+
+.mc-empty,
+.mc-loading {
+  font-family: var(--font-ui);
+  color: var(--mc-wood-dark);
+  text-align: center;
+  padding: 1rem;
+}
+
+.mc-recipe-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.mc-recipe-header h1 {
+  font-family: var(--font-pixel);
+  font-size: clamp(0.6rem, 2.2vw, 0.85rem);
+  color: var(--mc-gold);
+  text-shadow: 3px 3px 0 var(--mc-shadow);
+  margin: 0 0 0.5rem;
+  line-height: 1.7;
+}
+
+.mc-recipe-id {
+  font-family: var(--font-ui);
+  color: var(--mc-text-light);
+  text-shadow: 1px 1px 0 #000;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Pasos numerados como log de crafteo */
+.mc-pasos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: paso;
+}
+
+.mc-paso {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 12px 12px 12px 48px;
+  margin-bottom: 8px;
+  background: #fffef5;
+  border: 3px solid var(--mc-paper-dark);
+  position: relative;
+  counter-increment: paso;
+}
+
+.mc-paso::before {
+  content: counter(paso);
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background: var(--mc-emerald);
+  border: 2px solid var(--mc-emerald-dark);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 var(--mc-shadow);
+}
+
+.mc-paso-texto {
+  flex: 1;
+  min-width: 200px;
+  font-family: var(--font-ui);
+  line-height: 1.4;
+}
+
+.mc-acciones {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mc-footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--mc-text-light);
+  text-shadow: 1px 1px 0 #000;
+}
+
+.mc-footer span {
+  opacity: 0.9;
+}
+
+.mc-hotbar {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.45);
+  border-top: 3px solid #2a2a2a;
+  margin-top: 2rem;
+}
+
+.mc-hotbar-slot {
+  width: 44px;
+  height: 44px;
+  background: var(--mc-slot);
+  border: 3px solid;
+  border-color: #e8d090 var(--mc-slot-inset) var(--mc-slot-inset) #e8d090;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.mc-hotbar-slot--active {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}

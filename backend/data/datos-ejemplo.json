@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "nombre": "Espada de diamante",
+    "pasos": [
+      {
+        "id": 1,
+        "descripcion": "Consigue 2 palos y 1 diamante."
+      },
+      {
+        "id": 2,
+        "descripcion": "Abre la mesa de crafteo 3x3."
+      },
+      {
+        "id": 3,
+        "descripcion": "Coloca el diamante en el centro y los palos debajo."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Antorcha",
+    "pasos": [
+      {
+        "id": 4,
+        "descripcion": "Craftea 4 palos y 1 carbón."
+      },
+      {
+        "id": 5,
+        "descripcion": "Coloca el carbón sobre el palo en la mesa 2x2."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Mesa de crafteo",
+    "pasos": [
+      {
+        "id": 6,
+        "descripcion": "Coloca 4 tablones de madera en un cuadrado 2x2."
+      }
+    ]
+  }
+]

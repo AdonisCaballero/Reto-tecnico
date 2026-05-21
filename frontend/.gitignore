@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Angular cache
+.angular/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+
+# IDEs
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
+
+# Package lock optional
+# package-lock.json
+
+# Firebase / hosting
+.firebase/
+
+# Generated files
+out-tsc/
+
+# Runtime
+*.log

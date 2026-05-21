@@ -1,0 +1,52 @@
+<section class="mc-page">
+  @if (mensaje()) {
+    <p class="mc-toast" role="status">{{ mensaje() }}</p>
+  }
+
+  <form class="mc-panel" [formGroup]="form" (ngSubmit)="guardar()">
+    <h2>Nueva receta</h2>
+    <label class="mc-label" for="nombre">Nombre del ítem</label>
+    <input
+      id="nombre"
+      class="mc-input"
+      type="text"
+      formControlName="nombre"
+      placeholder="Ej: Espada de diamante"
+    />
+    <button type="submit" class="mc-btn mc-btn--primary" [disabled]="form.invalid">
+      Craftear receta
+    </button>
+  </form>
+
+  <div class="mc-panel">
+    <div class="mc-toolbar">
+      <h2>Inventario de recetas</h2>
+      <input
+        class="mc-search"
+        type="search"
+        placeholder="🔍 Buscar..."
+        [value]="busqueda()"
+        (input)="busqueda.set($any($event.target).value)"
+      />
+    </div>
+
+    @if (cargando()) {
+      <p class="mc-loading">Cargando mundo...</p>
+    } @else if (recetasFiltradas().length === 0) {
+      <p class="mc-empty">No hay recetas. ¡Craftea la primera en la mesa!</p>
+    } @else {
+      <ul class="mc-slot-list">
+        @for (receta of recetasFiltradas(); track receta.id) {
+          <li class="mc-slot-item">
+            <a class="mc-slot-item__link" [routerLink]="['/recetas', receta.id]">
+              {{ receta.nombre }}
+            </a>
+            <button type="button" class="mc-btn mc-btn--danger" (click)="eliminar(receta.id!)">
+              Destruir
+            </button>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</section>

@@ -1,0 +1,87 @@
+<section class="mc-page">
+  <a routerLink="/" class="mc-back">◀ Volver al inventario</a>
+
+  @if (receta(); as r) {
+    <header class="mc-recipe-header">
+      <div class="crafting-row" aria-hidden="true">
+        <div class="crafting-table">
+          <div class="crafting-grid" style="grid-template-columns: 36px">
+            <div class="crafting-slot crafting-slot--result">✨</div>
+          </div>
+        </div>
+      </div>
+      <h1>{{ r.nombre }}</h1>
+      <p class="mc-recipe-id">Receta #{{ r.id }}</p>
+    </header>
+  }
+
+  @if (mensaje()) {
+    <p class="mc-toast" role="status">{{ mensaje() }}</p>
+  }
+
+  <form class="mc-panel" [formGroup]="editForm" (ngSubmit)="guardarReceta()">
+    <h2>Editar receta</h2>
+    <label class="mc-label" for="nombre-edit">Nombre del ítem</label>
+    <input id="nombre-edit" class="mc-input" type="text" formControlName="nombre" />
+    <button type="submit" class="mc-btn mc-btn--wood" [disabled]="editForm.invalid">
+      Renombrar
+    </button>
+  </form>
+
+  <form class="mc-panel" [formGroup]="form" (ngSubmit)="guardarPaso()">
+    <h2>Añadir paso de crafteo</h2>
+    <label class="mc-label" for="descripcion">Instrucción</label>
+    <input
+      id="descripcion"
+      class="mc-input"
+      type="text"
+      formControlName="descripcion"
+      placeholder="Ej: Coloca 2 palos y 1 diamante en la mesa 3×3"
+    />
+    <button type="submit" class="mc-btn mc-btn--primary" [disabled]="form.invalid">
+      + Añadir paso
+    </button>
+  </form>
+
+  <div class="mc-panel">
+    <h2>Pasos de crafteo</h2>
+    @if (pasos().length === 0) {
+      <p class="mc-empty">Vacío — añade pasos como en la mesa de crafteo.</p>
+    } @else {
+      <ul class="mc-pasos">
+        @for (paso of pasos(); track paso.id) {
+          <li class="mc-paso">
+            @if (pasoEditandoId() === paso.id) {
+              <form
+                class="paso-edit-form"
+                [formGroup]="editPasoForm"
+                (ngSubmit)="guardarEdicionPaso()"
+                style="flex: 1; width: 100%"
+              >
+                <input class="mc-input" type="text" formControlName="descripcion" />
+                <div class="mc-acciones">
+                  <button type="submit" class="mc-btn mc-btn--primary" [disabled]="editPasoForm.invalid">
+                    Guardar
+                  </button>
+                  <button type="button" class="mc-btn mc-btn--secondary" (click)="cancelarEdicionPaso()">
+                    Cancelar
+                  </button>
+                </div>
+              </form>
+            } @else {
+              <span class="mc-paso-texto">{{ paso.descripcion }}</span>
+              <div class="mc-acciones">
+                <button type="button" class="mc-btn mc-btn--secondary" (click)="iniciarEdicionPaso(paso)">
+                  Editar
+                </button>
+                <button type="button" class="mc-btn mc-btn--danger" (click)="eliminarPaso(paso.id!)">
+                  Quitar
+                </button>
+              </div>
+            }
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</section>

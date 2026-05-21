@@ -1,0 +1,8 @@
+[ {
+  "id" : 1,
+  "nombre" : "espada de diamante",
+  "pasos" : [ {
+    "id" : 3,
+    "descripcion" : "palo abajo en el medio y justo arriba dos diamantes"
+  } ]
+} ]
