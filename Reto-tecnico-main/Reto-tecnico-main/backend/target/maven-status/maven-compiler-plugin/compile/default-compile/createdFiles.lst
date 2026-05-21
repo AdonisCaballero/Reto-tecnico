@@ -1,0 +1,4 @@
+com\example\LibroDeRecetas\LibroDeRecetasApplication.class
+com\example\LibroDeRecetas\controller\RecetaController.class
+com\example\LibroDeRecetas\model\Receta.class
+com\example\LibroDeRecetas\model\paso.class
